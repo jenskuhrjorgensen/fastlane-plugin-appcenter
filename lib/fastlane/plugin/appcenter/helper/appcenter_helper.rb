@@ -805,7 +805,9 @@ module Fastlane
             req.body = body
           end
         end
-
+        
+        puts "response from create_app: #{response}"
+        
         case status
         when 0, 429
           if status == 0
