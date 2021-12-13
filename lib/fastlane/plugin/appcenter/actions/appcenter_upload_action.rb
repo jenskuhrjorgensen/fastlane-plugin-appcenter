@@ -350,15 +350,7 @@ module Fastlane
 
         Options.strict_mode(params[:strict])
 
-        # if app found or successfully created
-        if self.get_or_create_app(params)
-          self.add_app_to_distribution_group_if_needed(params)
-          release = self.run_release_upload(params) unless upload_dsym_only || upload_mapping_only
-          params[:version] = release['short_version'] if release
-          params[:build_number] = release['version'] if release
-          self.run_dsym_upload(params) unless upload_mapping_only || upload_build_only
-          self.run_mapping_upload(params) unless upload_dsym_only || upload_build_only
-        end
+        self.get_or_create_app(params)
 
         return values if Helper.test?
       end
