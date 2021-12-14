@@ -806,7 +806,7 @@ module Fastlane
           end
         end
         
-        puts "response from create_app: #{response}"
+        puts "response from create_app: #{response.inspect}"
         
         case status
         when 0, 429
