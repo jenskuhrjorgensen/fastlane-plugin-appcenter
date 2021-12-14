@@ -372,9 +372,7 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :api_token,
                                   env_name: "APPCENTER_API_TOKEN",
                                description: "API Token for App Center",
-                             default_value: Actions.lane_context[Shared
-                               
-                               ::APPCENTER_API_TOKEN],
+                             default_value: Actions.lane_context[Shared::APPCENTER_API_TOKEN],
                                   optional: false,
                                       type: String,
                               verify_block: proc do |value|
