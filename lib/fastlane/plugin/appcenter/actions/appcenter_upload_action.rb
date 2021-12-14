@@ -311,7 +311,7 @@ module Fastlane
             platform = platforms[os.to_sym].length == 1 ? platforms[os.to_sym][0] : UI.select("Select Platform", platforms[os.to_sym])
           end
 
-          Helper::AppcenterHelper.create_app(api_token, owner_type, owner_name, app_name, app_display_name, os, platform)
+          return Helper::AppcenterHelper.create_app(api_token, owner_type, owner_name, app_name, app_display_name, os, platform)
         else
           UI.error("Lane aborted")
           false
@@ -350,9 +350,9 @@ module Fastlane
 
         Options.strict_mode(params[:strict])
 
-        self.get_or_create_app(params)
+        app_secret = self.get_or_create_app(params)
 
-        return values if Helper.test?
+        return app_secret
       end
 
       def self.description
@@ -372,7 +372,9 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :api_token,
                                   env_name: "APPCENTER_API_TOKEN",
                                description: "API Token for App Center",
-                             default_value: Actions.lane_context[SharedValues::APPCENTER_API_TOKEN],
+                             default_value: Actions.lane_context[Shared
+                               
+                               ::APPCENTER_API_TOKEN],
                                   optional: false,
                                       type: String,
                               verify_block: proc do |value|
